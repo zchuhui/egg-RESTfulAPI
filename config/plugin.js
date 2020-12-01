@@ -10,10 +10,10 @@ exports.bcrypt = {
   package: 'egg-bcrypt'
 }
 
-exports.mongoose = {
-  enable: true,
-  package: 'egg-mongoose',
-}
+// exports.mongoose = {
+//   enable: true,
+//   package: 'egg-mongoose',
+// }
 
 exports.jwt = {
   enable: true,
@@ -23,4 +23,9 @@ exports.jwt = {
 exports.cors = {
   enable: true,
   package: 'egg-cors',
+}
+
+exports.mysql = {
+  enable: true,
+  package: 'egg-mysql',
 }

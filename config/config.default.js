@@ -13,6 +13,7 @@ module.exports = appInfo => {
   //   match: '/api',
   // }
 
+
   config.security = {
     csrf: {
       enable: false,
@@ -28,14 +29,34 @@ module.exports = appInfo => {
     saltRounds: 10 // default 10
   }
 
-  config.mongoose = {
-    url: 'mongodb://127.0.0.1:27017/egg_x',
-    options: {
-      useMongoClient: true,
-      autoReconnect: true,
-      reconnectTries: Number.MAX_VALUE,
-      bufferMaxEntries: 0,
+  // config.mongoose = {
+  //   url: 'mongodb://127.0.0.1:27017/egg_x',
+  //   options: {
+  //     useMongoClient: true,
+  //     autoReconnect: true,
+  //     reconnectTries: Number.MAX_VALUE,
+  //     bufferMaxEntries: 0,
+  //   },
+  // }
+
+  config.mysql = {
+    // 单数据库信息配置
+    client: {
+      // host
+      host: 'gz-cdb-ge5xm6kv.sql.tencentcdb.com',
+      // 端口号
+      port: '59462',
+      // 用户名
+      user: 'root',
+      // 密码
+      password: 'zchuhui_2020',
+      // 数据库名
+      database: 'datarade',
     },
+    // 是否加载到 app 上，默认开启
+    app: true,
+    // 是否加载到 agent 上，默认关闭
+    agent: false,
   }
 
   config.jwt = {
