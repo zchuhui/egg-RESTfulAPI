@@ -8,7 +8,9 @@ module.exports = app => {
 
   // data sources 
   router.get('/api/data-source', controller.dataSource.sourceList)
+  router.get('/api/categories', controller.dataSource.categories)
 
+  
   // role
   // router.post('/api/role', controller.role.create)
   // router.delete('/api/role/:id', controller.role.destroy)

@@ -9,7 +9,6 @@ class DataSourceService extends Service {
     // 请求参数
     const { currentPage,pageSize } = payload
     // console.log('sourcelist payload',payload)
-
     
     // mysql 开始查询
     const res = await this.app.mysql.select('data_sources',{
@@ -21,21 +20,30 @@ class DataSourceService extends Service {
     })
     let count = res.length
 
-    // 整理数据源格式化
-    // let data = res.map((e,i) => {
-    //   const jsonObject = Object.assign({}, e._doc)
-    //   jsonObject.key = i
-    //   jsonObject.password = 'Are you ok?'
-    //   jsonObject.createdAt = this.ctx.helper.formatTime(e.createdAt)
-    //   return jsonObject
-    // })
-
     return {list:res,count:count,}
 
   }  
 
-  
+  // 类型列表 ======================================================================================================>
+  async categories(payload) { 
 
+    // mysql 开始查询, 用 distinct 去重，用 not null 去 null 值
+    const res = await this.app.mysql.query('select distinct category from data_sources_2 where category is  not null')
+    const res_sub = await this.app.mysql.query('select distinct category, sub_categor from data_sources_2 where category is  not null')
+
+    let result = []
+    res.map((i,index)=>{
+      result.push({
+        name:i.category,
+        children:res_sub.filter((item,index)=> item.category === i.category)
+      })
+    })
+
+    let count = result.length
+ 
+    return {list:result,count:count,}
+
+  } 
 }
 
 
